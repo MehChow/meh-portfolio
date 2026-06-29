@@ -2,7 +2,6 @@
 import { ArrowRight, Coffee, Smartphone } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import Layout from "@/layouts/Layout.astro"
 import { apps, skillGroups } from "@/lib/portfolio"
@@ -13,35 +12,44 @@ import { apps, skillGroups } from "@/lib/portfolio"
   description="Portfolio for a React frontend and Expo React Native developer."
 >
   <section class="px-6 py-16 sm:py-24">
-    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(18rem,0.68fr)] lg:items-center lg:gap-14">
       <div class="flex flex-col gap-6">
         <Badge className="w-fit" variant="secondary">
           <Coffee aria-hidden="true" />
           Coffee-fueled frontend and mobile work
         </Badge>
         <div class="flex flex-col gap-4">
-          <h1 class="max-w-3xl text-4xl font-semibold leading-tight sm:text-6xl">
-            React interfaces and Expo apps with a calm, shipped-product feel.
+          <h1 class="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:max-w-3xl">
+            React interfaces and Expo apps that feel shipped.
           </h1>
-          <p class="max-w-2xl text-lg leading-8 text-muted-foreground">
-            Placeholder Developer builds web and mobile experiences across React, Astro, and Expo
-            React Native, with 3+ years focused on practical frontend craft.
+          <p class="max-w-xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+            Placeholder Developer builds practical web and mobile experiences across React, Astro,
+            and Expo React Native.
           </p>
         </div>
-        <div class="flex flex-col gap-3 sm:flex-row">
-          <Button asChild size="lg">
-            <a href="/apps">
-              View apps
-              <ArrowRight data-icon="inline-end" aria-hidden="true" />
-            </a>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <a href="mailto:hello@example.com">Contact</a>
-          </Button>
+        <div class="flex gap-3 sm:flex-row">
+          <a
+            href="/apps"
+            class="relative flex min-h-11 flex-1 items-center justify-center rounded-full border border-border/80 bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/85 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto sm:min-w-40 sm:flex-none sm:justify-between sm:gap-3"
+          >
+            <span>View apps</span>
+            <span class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-primary-foreground/15 bg-primary-foreground/10 sm:static">
+              <ArrowRight class="size-3.5" aria-hidden="true" />
+            </span>
+          </a>
+          <a
+            href="/contact"
+            class="relative flex min-h-11 flex-1 items-center justify-center rounded-full border border-border/80 bg-muted/30 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto sm:min-w-40 sm:flex-none sm:justify-between sm:gap-3"
+          >
+            <span>Contact</span>
+            <span class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-border/80 bg-background/80 sm:static">
+              <ArrowRight class="size-3.5" aria-hidden="true" />
+            </span>
+          </a>
         </div>
       </div>
 
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden lg:mx-auto lg:w-full lg:max-w-xl">
         <CardHeader>
           <CardTitle>Current focus</CardTitle>
           <CardDescription>
@@ -53,7 +61,7 @@ import { apps, skillGroups } from "@/lib/portfolio"
           <div class="grid gap-3">
             {["Expo React Native", "Accessible shadcn UI", "Android release workflow"].map(
               (item) => (
-                <div class="flex min-w-0 items-center gap-3 rounded-lg bg-muted p-3">
+                <div class="flex min-w-0 items-center gap-3 rounded-lg bg-muted/70 px-4 py-3">
                   <Smartphone aria-hidden="true" />
                   <span class="min-w-0 text-sm font-medium">{item}</span>
                 </div>

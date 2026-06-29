@@ -2,7 +2,6 @@
 import { ExternalLink } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import Layout from "@/layouts/Layout.astro"
@@ -63,14 +62,17 @@ import { apps } from "@/lib/portfolio"
                     </li>
                   ))}
                 </ul>
-                <div class="flex flex-wrap gap-3">
+                <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   {app.links.map((link) => (
-                    <Button asChild variant="outline">
-                      <a href={link.href}>
-                        {link.label}
-                        <ExternalLink data-icon="inline-end" aria-hidden="true" />
-                      </a>
-                    </Button>
+                    <a
+                      href={link.href}
+                      class="relative flex min-h-11 w-full items-center justify-center rounded-full border border-border/80 bg-muted/30 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto sm:min-w-40 sm:justify-between sm:gap-3"
+                    >
+                      <span>{link.label}</span>
+                      <span class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-border/80 bg-background/80 sm:static">
+                        <ExternalLink class="size-3.5" aria-hidden="true" />
+                      </span>
+                    </a>
                   ))}
                 </div>
               </CardContent>

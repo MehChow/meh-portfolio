@@ -13,19 +13,33 @@ const {
 } = Astro.props
 
 const currentPath = Astro.url.pathname
+const themeColors = {
+  dark: "#241f1b",
+  light: "#f4ede2",
+}
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#241f1b" />
+    <meta name="theme-color" content={themeColors.dark} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline define:vars={{ darkThemeColor: themeColors.dark, lightThemeColor: themeColors.light }}>
+      const themeMatch = document.cookie.match(/(?:^|; )theme=(dark|light)(?:;|$)/)
+      const theme = themeMatch?.[1] ?? "dark"
+      const root = document.documentElement
+      const themeColor = document.querySelector('meta[name="theme-color"]')
+
+      root.classList.toggle("dark", theme === "dark")
+      root.style.colorScheme = theme
+      themeColor?.setAttribute("content", theme === "dark" ? darkThemeColor : lightThemeColor)
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>

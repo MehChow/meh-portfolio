@@ -72,12 +72,14 @@ Content:
 Desktop:
 
 - Top header with brand/name on the left and links to Home, Apps, About, and Contact on the right
+- Place a theme toggle icon immediately after the Contact link
 - Use real anchors for navigation, not click handlers
 - Active page should be visually indicated and not rely only on color
 
 Mobile:
 
 - Use shadcn `Sheet` for the menu
+- Keep the theme toggle visible beside the hamburger trigger, outside the Sheet
 - Trigger is an icon button with an accessible label
 - Sheet slides from the side with a dimmed background overlay
 - Include a visible title for screen readers and focus management
@@ -107,6 +109,17 @@ Keep the current Tailwind v4 and shadcn setup:
 
 Use semantic tokens such as `bg-background`, `bg-card`, `text-muted-foreground`, `border-border`, `bg-primary`, and `text-primary-foreground`.
 
+Theme behavior:
+
+- Dark mode remains the current default visual treatment
+- Light mode should shift to a warm creme / light-coffee palette rather than plain white
+- Theme tokens stay in `src/styles/global.css`
+- Light mode becomes the base token set, while `.dark` preserves the current darker token set
+- `html` should update both the `dark` class and `color-scheme`
+- Theme choice persists in a `theme=dark|light` cookie
+- A tiny inline script in the document head should apply the stored theme before paint to avoid a flash of the wrong theme
+- The toggle lives inside the existing hydrated header component rather than creating another island
+
 Global polish:
 
 - Add `scroll-behavior`, heading `scroll-margin-top`, root `touch-action: manipulation`, and visible `:focus-visible` styles
@@ -134,6 +147,7 @@ Keep shared app/project content in one small data module because both Home and A
 - Use semantic landmarks: header, nav, main, section, footer
 - One `h1` per page, hierarchical headings after that
 - All icon-only buttons need `aria-label`
+- Theme toggle label should switch between "Switch to light mode" and "Switch to dark mode"
 - Visible focus rings on links and buttons
 - Mobile Sheet must preserve keyboard navigation and focus behavior
 - Links must be usable with Cmd/Ctrl/middle-click
@@ -146,6 +160,9 @@ Minimum checks before completion:
 - `pnpm build`
 - Visual check at mobile and desktop widths
 - Confirm mobile Sheet opens, dims background, closes, and returns focus
+- Confirm the theme toggle appears after Contact on desktop and beside the hamburger on mobile
+- Confirm theme selection persists across reloads and page navigation
+- Confirm initial paint uses the stored theme without a visible flash
 - Confirm no obvious overflow, clipped text, or unwanted horizontal scroll
 
 ## Out of Scope
@@ -154,5 +171,4 @@ Minimum checks before completion:
 - Real personal name, biography, social links, and app URLs
 - Blog/CMS
 - Contact form backend
-- Dark/light theme toggle
 - Analytics

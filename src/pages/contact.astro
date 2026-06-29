@@ -1,0 +1,65 @@
+---
+import { ArrowUpRight, Globe, Mail, UserRound } from "lucide-react"
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Layout from "@/layouts/Layout.astro"
+import { contactProfile } from "@/lib/portfolio"
+---
+
+<Layout
+  title="Contact | Placeholder Developer"
+  description="Contact page for a React frontend and Expo React Native developer."
+>
+  <section class="px-6 py-16 sm:py-24">
+    <div class="mx-auto max-w-4xl">
+      <Card className="overflow-hidden border-border/80 bg-card shadow-[0_24px_80px_rgba(62,43,24,0.12)] dark:bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_45%),linear-gradient(180deg,rgba(53,45,40,0.98),rgba(36,31,27,1))] dark:shadow-[0_24px_80px_rgba(0,0,0,0.24)]">
+        <CardHeader className="items-center gap-5 border-b border-border/60 pb-8 text-center">
+          <div class="flex size-24 items-center justify-center rounded-full border border-border/80 bg-background/85 shadow-sm dark:bg-background/70">
+            <UserRound class="size-10 text-foreground" aria-hidden="true" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <CardTitle className="text-3xl">{contactProfile.name}</CardTitle>
+            <CardDescription className="max-w-xl text-base leading-7">
+              {contactProfile.intro}
+            </CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent className="grid gap-4 p-6 sm:p-8">
+          <a
+            href={contactProfile.github.href}
+            target="_blank"
+            rel="noreferrer"
+            class="group flex min-h-14 items-center gap-4 rounded-2xl border border-border/70 bg-background/75 px-4 py-4 transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-background/35 dark:hover:bg-background/55"
+          >
+            <div class="flex size-11 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background">
+              <Globe class="size-5" aria-hidden="true" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-medium text-muted-foreground">{contactProfile.github.label}</p>
+              <p class="truncate text-base font-medium">{contactProfile.github.value}</p>
+            </div>
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background">
+              <ArrowUpRight class="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+            </div>
+          </a>
+
+          <a
+            href={contactProfile.email.href}
+            class="group flex min-h-14 items-center gap-4 rounded-2xl border border-border/70 bg-background/75 px-4 py-4 transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-background/35 dark:hover:bg-background/55"
+          >
+            <div class="flex size-11 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background">
+              <Mail class="size-5" aria-hidden="true" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-medium text-muted-foreground">{contactProfile.email.label}</p>
+              <p class="truncate text-base font-medium">{contactProfile.email.value}</p>
+            </div>
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background">
+              <ArrowUpRight class="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+            </div>
+          </a>
+        </CardContent>
+      </Card>
+    </div>
+  </section>
+</Layout>

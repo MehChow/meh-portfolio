@@ -2,8 +2,23 @@ export const navItems = [
   { label: "Home", href: "/" },
   { label: "Apps", href: "/apps" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "mailto:hello@example.com" },
+  { label: "Contact", href: "/contact" },
 ] as const
+
+export const contactProfile = {
+  name: "Placeholder Developer",
+  intro: "Open to frontend and mobile work with a calm, practical product focus.",
+  github: {
+    label: "GitHub",
+    value: "github.com/placeholder-dev",
+    href: "https://github.com/placeholder-dev",
+  },
+  email: {
+    label: "Email",
+    value: "hello@example.com",
+    href: "mailto:hello@example.com",
+  },
+} as const
 
 export const apps = [
   {

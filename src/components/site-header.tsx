@@ -1,4 +1,5 @@
-import { Menu } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Menu, Moon, Sun } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -16,12 +17,43 @@ type SiteHeaderProps = {
   currentPath: string
 }
 
+const THEME_COOKIE = "theme"
+const THEME_COOKIE_MAX_AGE = 60 * 60 * 24 * 365
+const DARK_THEME_COLOR = "#241f1b"
+const LIGHT_THEME_COLOR = "#f4ede2"
+
 function isActive(href: string, currentPath: string) {
   if (href === "/") return currentPath === "/"
   return currentPath.startsWith(href)
 }
 
 export default function SiteHeader({ currentPath }: SiteHeaderProps) {
+  const [theme, setTheme] = useState<"dark" | "light">("dark")
+
+  useEffect(() => {
+    const nextTheme = document.documentElement.classList.contains("dark") ? "dark" : "light"
+    setTheme(nextTheme)
+  }, [])
+
+  function applyTheme(nextTheme: "dark" | "light") {
+    const root = document.documentElement
+    const themeColor = document.querySelector('meta[name="theme-color"]')
+    const isDark = nextTheme === "dark"
+
+    root.classList.toggle("dark", isDark)
+    root.style.colorScheme = nextTheme
+    themeColor?.setAttribute("content", isDark ? DARK_THEME_COLOR : LIGHT_THEME_COLOR)
+    document.cookie = `${THEME_COOKIE}=${nextTheme}; path=/; max-age=${THEME_COOKIE_MAX_AGE}; samesite=lax`
+    setTheme(nextTheme)
+  }
+
+  function toggleTheme() {
+    applyTheme(theme === "dark" ? "light" : "dark")
+  }
+
+  const nextThemeLabel = theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+  const ThemeIcon = theme === "dark" ? Sun : Moon
+
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/75 sm:px-6">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4">
@@ -39,16 +71,35 @@ export default function SiteHeader({ currentPath }: SiteHeaderProps) {
 
             return (
               <Button key={item.href} asChild variant={active ? "secondary" : "ghost"}>
-                <a href={item.href} aria-current={active ? "page" : undefined}>
-                  {active ? <span aria-hidden="true">•</span> : null}
-                  {item.label}
-                </a>
+                <a href={item.href} aria-current={active ? "page" : undefined}>{item.label}</a>
               </Button>
             )
           })}
+
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label={nextThemeLabel}
+            title={nextThemeLabel}
+            onClick={toggleTheme}
+          >
+            <ThemeIcon aria-hidden="true" />
+          </Button>
         </nav>
 
-        <div className="md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
+          <Button
+            type="button"
+            variant="outline"
+            size="icon"
+            aria-label={nextThemeLabel}
+            title={nextThemeLabel}
+            onClick={toggleTheme}
+          >
+            <ThemeIcon aria-hidden="true" />
+          </Button>
+
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" aria-label="Open navigation menu">
@@ -76,7 +127,6 @@ export default function SiteHeader({ currentPath }: SiteHeaderProps) {
                         )}
                       >
                         <span>{item.label}</span>
-                        {active ? <span aria-hidden="true">Current</span> : null}
                       </a>
                     </SheetClose>
                   )
