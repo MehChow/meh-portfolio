@@ -1,0 +1,83 @@
+---
+import { ExternalLink } from "lucide-react"
+
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import Layout from "@/layouts/Layout.astro"
+import { apps } from "@/lib/portfolio"
+---
+
+<Layout
+  title="Apps | Placeholder Developer"
+  description="App showcase for Quick Panel Background Cropper and Let You Cook."
+>
+  <section class="px-6 py-16 sm:py-24">
+    <div class="mx-auto flex max-w-6xl flex-col gap-4">
+      <p class="text-sm font-medium text-muted-foreground">App shelf</p>
+      <h1 class="max-w-3xl text-4xl font-semibold leading-tight sm:text-6xl">
+        Two mobile products, shown like case notes on a coffee desk.
+      </h1>
+      <p class="max-w-2xl text-lg leading-8 text-muted-foreground">
+        Placeholder descriptions for real app slots. Replace screenshots, store links, and
+        deeper case studies when ready.
+      </p>
+    </div>
+  </section>
+
+  <section class="px-6 pb-20">
+    <div class="mx-auto flex max-w-6xl flex-col gap-8">
+      {apps.map((app, index) => (
+        <Card className="overflow-hidden">
+          <div class={`grid gap-0 lg:grid-cols-2 ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
+            <div class="bg-muted p-6 sm:p-10">
+              <div class="mx-auto aspect-[9/16] max-w-64 rounded-[2rem] border border-border bg-card p-4 shadow-sm">
+                <div class="flex h-full flex-col gap-3 rounded-[1.5rem] bg-background p-4">
+                  <div class="h-5 rounded-full bg-muted"></div>
+                  <div class="grid flex-1 gap-3">
+                    <div class="rounded-xl bg-muted"></div>
+                    <div class="rounded-xl bg-card"></div>
+                    <div class="rounded-xl bg-muted"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <CardHeader>
+                <CardDescription>{app.eyebrow}</CardDescription>
+                <CardTitle className="text-3xl">{app.name}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-6">
+                <p class="text-base leading-7 text-muted-foreground">{app.summary}</p>
+                <div class="flex flex-wrap gap-2">
+                  {app.stack.map((item) => (
+                    <Badge variant="secondary">{item}</Badge>
+                  ))}
+                </div>
+                <Separator />
+                <ul class="grid gap-3">
+                  {app.notes.map((note) => (
+                    <li class="rounded-lg bg-muted p-3 text-sm leading-6 text-muted-foreground">
+                      {note}
+                    </li>
+                  ))}
+                </ul>
+                <div class="flex flex-wrap gap-3">
+                  {app.links.map((link) => (
+                    <Button asChild variant="outline">
+                      <a href={link.href}>
+                        {link.label}
+                        <ExternalLink data-icon="inline-end" aria-hidden="true" />
+                      </a>
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  </section>
+</Layout>

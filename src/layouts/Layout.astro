@@ -1,23 +1,43 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import SiteHeader from "@/components/site-header"
+import "../styles/global.css"
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = "Placeholder Developer | React and Expo Portfolio",
+  description = "Portfolio for a React frontend and Expo React Native developer.",
+} = Astro.props
+
+const currentPath = Astro.url.pathname
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#241f1b" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteHeader client:load currentPath={currentPath} />
+    <main id="main-content">
+      <slot />
+    </main>
+    <footer class="border-t border-border px-6 py-8 text-sm text-muted-foreground">
+      <div class="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <p>Placeholder Developer</p>
+        <p>React, Expo, and frontend craft.</p>
+      </div>
+    </footer>
+  </body>
+</html>

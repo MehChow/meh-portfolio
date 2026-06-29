@@ -1,0 +1,97 @@
+---
+import { ArrowRight } from "lucide-react"
+
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Layout from "@/layouts/Layout.astro"
+import { skillGroups, timelineItems, workingStyleItems } from "@/lib/portfolio"
+---
+
+<Layout
+  title="About | Placeholder Developer"
+  description="About a React frontend and Expo React Native developer."
+>
+  <section class="px-6 py-16 sm:py-24">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div class="flex flex-col gap-4">
+        <p class="text-sm font-medium text-muted-foreground">About</p>
+        <h1 class="text-4xl font-semibold leading-tight sm:text-6xl">
+          Frontend developer, mobile-app builder, practical UI finisher.
+        </h1>
+      </div>
+      <div class="flex flex-col gap-5 text-lg leading-8 text-muted-foreground">
+        <p>
+          Placeholder Developer has 3+ years of experience building React interfaces and Expo
+          React Native mobile apps, with a focus on responsive layouts, accessible controls, and
+          polished product details.
+        </p>
+        <p>
+          The work tends to sit where UI craft meets shipping reality: simple state, readable
+          components, and flows that survive real devices.
+        </p>
+        <Button asChild className="w-fit" size="lg">
+          <a href="mailto:hello@example.com">
+            Start a conversation
+            <ArrowRight data-icon="inline-end" aria-hidden="true" />
+          </a>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 pb-20">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Experience notes</CardTitle>
+          <CardDescription>A compact timeline for the portfolio placeholder copy.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ol class="flex flex-col gap-4">
+            {timelineItems.map((item) => (
+              <li class="rounded-lg bg-muted p-4">
+                <p class="text-sm font-medium text-muted-foreground">{item.period}</p>
+                <h2 class="mt-1 text-xl font-semibold">{item.title}</h2>
+                <p class="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
+              </li>
+            ))}
+          </ol>
+        </CardContent>
+      </Card>
+
+      <div class="flex flex-col gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Tool stack</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col gap-5">
+            {skillGroups.map((group) => (
+              <div class="flex flex-col gap-2">
+                <h2 class="text-sm font-medium">{group.title}</h2>
+                <div class="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <Badge variant="outline">{item}</Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Working style</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul class="flex flex-col gap-3">
+              {workingStyleItems.map((item) => (
+                <li class="text-sm leading-6 text-muted-foreground">{item}</li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,12 +1,118 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
-import "../styles/global.css";
+import { ArrowRight, Coffee, Smartphone } from "lucide-react"
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Layout from "@/layouts/Layout.astro"
+import { apps, skillGroups } from "@/lib/portfolio"
 ---
 
-<Layout>
-  <Welcome />
+<Layout
+  title="Placeholder Developer | React and Expo Portfolio"
+  description="Portfolio for a React frontend and Expo React Native developer."
+>
+  <section class="px-6 py-16 sm:py-24">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div class="flex flex-col gap-6">
+        <Badge className="w-fit" variant="secondary">
+          <Coffee aria-hidden="true" />
+          Coffee-fueled frontend and mobile work
+        </Badge>
+        <div class="flex flex-col gap-4">
+          <h1 class="max-w-3xl text-4xl font-semibold leading-tight sm:text-6xl">
+            React interfaces and Expo apps with a calm, shipped-product feel.
+          </h1>
+          <p class="max-w-2xl text-lg leading-8 text-muted-foreground">
+            Placeholder Developer builds web and mobile experiences across React, Astro, and Expo
+            React Native, with 3+ years focused on practical frontend craft.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <Button asChild size="lg">
+            <a href="/apps">
+              View apps
+              <ArrowRight data-icon="inline-end" aria-hidden="true" />
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline">
+            <a href="mailto:hello@example.com">Contact</a>
+          </Button>
+        </div>
+      </div>
+
+      <Card className="overflow-hidden">
+        <CardHeader>
+          <CardTitle>Current focus</CardTitle>
+          <CardDescription>
+            Mobile ergonomics, responsive systems, and small interactions that make products feel
+            finished.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div class="grid gap-3">
+            {["Expo React Native", "Accessible shadcn UI", "Android release workflow"].map(
+              (item) => (
+                <div class="flex min-w-0 items-center gap-3 rounded-lg bg-muted p-3">
+                  <Smartphone aria-hidden="true" />
+                  <span class="min-w-0 text-sm font-medium">{item}</span>
+                </div>
+              )
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  </section>
+
+  <section class="px-6 py-10">
+    <div class="mx-auto flex max-w-6xl flex-col gap-6">
+      <div class="flex flex-col gap-2">
+        <p class="text-sm font-medium text-muted-foreground">Featured apps</p>
+        <h2 class="text-3xl font-semibold">Built app shelf</h2>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2">
+        {apps.map((app) => (
+          <Card>
+            <CardHeader>
+              <CardDescription>{app.eyebrow}</CardDescription>
+              <CardTitle>{app.name}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-5">
+              <div class="aspect-[4/3] rounded-xl border border-border bg-muted p-4">
+                <div class="mx-auto h-full max-w-40 rounded-2xl border border-border bg-card p-3 shadow-sm">
+                  <div class="h-full rounded-xl bg-background" aria-label={`${app.name} placeholder screenshot`}></div>
+                </div>
+              </div>
+              <p class="text-sm leading-6 text-muted-foreground">{app.summary}</p>
+              <div class="flex flex-wrap gap-2">
+                {app.stack.slice(0, 4).map((item) => (
+                  <Badge variant="secondary">{item}</Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-16">
+    <div class="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
+      {skillGroups.map((group) => (
+        <Card>
+          <CardHeader>
+            <CardTitle>{group.title}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div class="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <Badge variant="outline">{item}</Badge>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  </section>
 </Layout>
