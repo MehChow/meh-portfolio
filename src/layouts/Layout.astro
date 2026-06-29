@@ -1,22 +1,22 @@
 ---
-import SiteHeader from "@/components/site-header"
-import "../styles/global.css"
+import SiteHeader from "@/components/site-header";
+import "../styles/global.css";
 
 interface Props {
-  title?: string
-  description?: string
+  title?: string;
+  description?: string;
 }
 
 const {
   title = "Placeholder Developer | React and Expo Portfolio",
   description = "Portfolio for a React frontend and Expo React Native developer.",
-} = Astro.props
+} = Astro.props;
 
-const currentPath = Astro.url.pathname
+const currentPath = Astro.url.pathname;
 const themeColors = {
   dark: "#241f1b",
   light: "#f4ede2",
-}
+};
 ---
 
 <!doctype html>
@@ -25,20 +25,34 @@ const themeColors = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content={themeColors.dark} />
+    <meta
+      name="theme-color"
+      content={themeColors.dark}
+      data-dark={themeColors.dark}
+      data-light={themeColors.light}
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <script is:inline define:vars={{ darkThemeColor: themeColors.dark, lightThemeColor: themeColors.light }}>
-      const themeMatch = document.cookie.match(/(?:^|; )theme=(dark|light)(?:;|$)/)
-      const theme = themeMatch?.[1] ?? "dark"
-      const root = document.documentElement
-      const themeColor = document.querySelector('meta[name="theme-color"]')
+    <script is:inline>
+      const themeMatch = document.cookie.match(
+        /(?:^|; )theme=(dark|light)(?:;|$)/,
+      );
+      const theme = themeMatch?.[1] ?? "dark";
+      const root = document.documentElement;
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+      const darkThemeColor = themeColor?.getAttribute("data-dark");
+      const lightThemeColor = themeColor?.getAttribute("data-light");
 
-      root.classList.toggle("dark", theme === "dark")
-      root.style.colorScheme = theme
-      themeColor?.setAttribute("content", theme === "dark" ? darkThemeColor : lightThemeColor)
+      root.classList.toggle("dark", theme === "dark");
+      root.style.colorScheme = theme;
+      if (themeColor && darkThemeColor && lightThemeColor) {
+        themeColor.setAttribute(
+          "content",
+          theme === "dark" ? darkThemeColor : lightThemeColor,
+        );
+      }
     </script>
   </head>
   <body>
@@ -47,8 +61,12 @@ const themeColors = {
     <main id="main-content">
       <slot />
     </main>
-    <footer class="border-t border-border px-6 py-8 text-sm text-muted-foreground">
-      <div class="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+    <footer
+      class="border-t border-border px-6 py-8 text-sm text-muted-foreground"
+    >
+      <div
+        class="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
+      >
         <p>Placeholder Developer</p>
         <p>React, Expo, and frontend craft.</p>
       </div>
