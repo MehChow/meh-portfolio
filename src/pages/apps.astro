@@ -1,11 +1,17 @@
 ---
-import { ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import Layout from "@/layouts/Layout.astro"
-import { apps } from "@/lib/portfolio"
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import Layout from "@/layouts/Layout.astro";
+import { apps } from "@/lib/portfolio";
 ---
 
 <Layout
@@ -19,67 +25,76 @@ import { apps } from "@/lib/portfolio"
         Two mobile products, shown like case notes on a coffee desk.
       </h1>
       <p class="max-w-2xl text-lg leading-8 text-muted-foreground">
-        Placeholder descriptions for real app slots. Replace screenshots, store links, and
-        deeper case studies when ready.
+        Placeholder descriptions for real app slots. Replace screenshots, store
+        links, and deeper case studies when ready.
       </p>
     </div>
   </section>
 
   <section class="px-6 pb-20">
     <div class="mx-auto flex max-w-6xl flex-col gap-8">
-      {apps.map((app, index) => (
-        <Card className="overflow-hidden">
-          <div class={`grid gap-0 lg:grid-cols-2 ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-            <div class="bg-muted p-6 sm:p-10">
-              <div class="mx-auto aspect-[9/16] max-w-64 rounded-[2rem] border border-border bg-card p-4 shadow-sm">
-                <div class="flex h-full flex-col gap-3 rounded-[1.5rem] bg-background p-4">
-                  <div class="h-5 rounded-full bg-muted"></div>
-                  <div class="grid flex-1 gap-3">
-                    <div class="rounded-xl bg-muted"></div>
-                    <div class="rounded-xl bg-card"></div>
-                    <div class="rounded-xl bg-muted"></div>
+      {
+        apps.map((app, index) => (
+          <Card className="overflow-hidden">
+            <div
+              class={`grid gap-0 lg:grid-cols-2 ${index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
+            >
+              <div class="bg-muted p-6 sm:p-10">
+                <div class="mx-auto aspect-[9/16] max-w-64 rounded-[2rem] border border-border bg-card p-4 shadow-sm">
+                  <div class="flex h-full flex-col gap-3 rounded-[1.5rem] bg-background p-4">
+                    <div class="h-5 rounded-full bg-muted" />
+                    <div class="grid flex-1 gap-3">
+                      <div class="rounded-xl bg-muted" />
+                      <div class="rounded-xl bg-card" />
+                      <div class="rounded-xl bg-muted" />
+                    </div>
                   </div>
                 </div>
               </div>
+              <div>
+                <CardHeader>
+                  <CardDescription>{app.eyebrow}</CardDescription>
+                  <CardTitle className="text-3xl">{app.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-6">
+                  <p class="text-base leading-7 text-muted-foreground">
+                    {app.summary}
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    {app.stack.map((item) => (
+                      <Badge variant="secondary">{item}</Badge>
+                    ))}
+                  </div>
+                  <Separator />
+                  <ul class="grid gap-3">
+                    {app.notes.map((note) => (
+                      <li class="rounded-lg bg-muted p-3 text-sm leading-6 text-muted-foreground">
+                        {note}
+                      </li>
+                    ))}
+                  </ul>
+                  <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    {app.links.map((link) => (
+                      <a
+                        href={link.href}
+                        class="relative flex min-h-11 w-full items-center justify-center rounded-full border border-border/80 bg-muted/30 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto sm:min-w-40 sm:justify-between sm:gap-3"
+                      >
+                        <span>{link.label}</span>
+                        <span class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-border/80 bg-background/80 sm:static">
+                          <ExternalLink
+                            className="size-3.5"
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </CardContent>
+              </div>
             </div>
-            <div>
-              <CardHeader>
-                <CardDescription>{app.eyebrow}</CardDescription>
-                <CardTitle className="text-3xl">{app.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-6">
-                <p class="text-base leading-7 text-muted-foreground">{app.summary}</p>
-                <div class="flex flex-wrap gap-2">
-                  {app.stack.map((item) => (
-                    <Badge variant="secondary">{item}</Badge>
-                  ))}
-                </div>
-                <Separator />
-                <ul class="grid gap-3">
-                  {app.notes.map((note) => (
-                    <li class="rounded-lg bg-muted p-3 text-sm leading-6 text-muted-foreground">
-                      {note}
-                    </li>
-                  ))}
-                </ul>
-                <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  {app.links.map((link) => (
-                    <a
-                      href={link.href}
-                      class="relative flex min-h-11 w-full items-center justify-center rounded-full border border-border/80 bg-muted/30 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto sm:min-w-40 sm:justify-between sm:gap-3"
-                    >
-                      <span>{link.label}</span>
-                      <span class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-border/80 bg-background/80 sm:static">
-                        <ExternalLink class="size-3.5" aria-hidden="true" />
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </CardContent>
-            </div>
-          </div>
-        </Card>
-      ))}
+          </Card>
+        ))
+      }
     </div>
   </section>
 </Layout>

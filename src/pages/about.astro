@@ -1,10 +1,16 @@
 ---
-import { ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Layout from "@/layouts/Layout.astro"
-import { skillGroups, timelineItems, workingStyleItems } from "@/lib/portfolio"
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Layout from "@/layouts/Layout.astro";
+import { skillGroups, timelineItems, workingStyleItems } from "@/lib/portfolio";
 ---
 
 <Layout
@@ -21,21 +27,23 @@ import { skillGroups, timelineItems, workingStyleItems } from "@/lib/portfolio"
       </div>
       <div class="flex flex-col gap-5 text-lg leading-8 text-muted-foreground">
         <p>
-          Placeholder Developer has 3+ years of experience building React interfaces and Expo
-          React Native mobile apps, with a focus on responsive layouts, accessible controls, and
-          polished product details.
+          Placeholder Developer has 3+ years of experience building React
+          interfaces and Expo React Native mobile apps, with a focus on
+          responsive layouts, accessible controls, and polished product details.
         </p>
         <p>
-          The work tends to sit where UI craft meets shipping reality: simple state, readable
-          components, and flows that survive real devices.
+          The work tends to sit where UI craft meets shipping reality: simple
+          state, readable components, and flows that survive real devices.
         </p>
         <a
           href="/contact"
           class="relative flex min-h-11 w-full items-center justify-center rounded-full border border-border/80 bg-muted/30 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-fit sm:min-w-52 sm:justify-between sm:gap-3"
         >
           <span>Start a conversation</span>
-          <span class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-border/80 bg-background/80 sm:static">
-            <ArrowRight class="size-3.5" aria-hidden="true" />
+          <span
+            class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-border/80 bg-background/80 sm:static"
+          >
+            <ArrowRight className="size-3.5" aria-hidden="true" />
           </span>
         </a>
       </div>
@@ -47,17 +55,25 @@ import { skillGroups, timelineItems, workingStyleItems } from "@/lib/portfolio"
       <Card>
         <CardHeader>
           <CardTitle>Experience notes</CardTitle>
-          <CardDescription>A compact timeline for the portfolio placeholder copy.</CardDescription>
+          <CardDescription
+            >A compact timeline for the portfolio placeholder copy.</CardDescription
+          >
         </CardHeader>
         <CardContent>
           <ol class="flex flex-col gap-4">
-            {timelineItems.map((item) => (
-              <li class="rounded-lg bg-muted p-4">
-                <p class="text-sm font-medium text-muted-foreground">{item.period}</p>
-                <h2 class="mt-1 text-xl font-semibold">{item.title}</h2>
-                <p class="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
-              </li>
-            ))}
+            {
+              timelineItems.map((item) => (
+                <li class="rounded-lg bg-muted p-4">
+                  <p class="text-sm font-medium text-muted-foreground">
+                    {item.period}
+                  </p>
+                  <h2 class="mt-1 text-xl font-semibold">{item.title}</h2>
+                  <p class="mt-2 text-sm leading-6 text-muted-foreground">
+                    {item.description}
+                  </p>
+                </li>
+              ))
+            }
           </ol>
         </CardContent>
       </Card>
@@ -68,16 +84,18 @@ import { skillGroups, timelineItems, workingStyleItems } from "@/lib/portfolio"
             <CardTitle>Tool stack</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col gap-5">
-            {skillGroups.map((group) => (
-              <div class="flex flex-col gap-2">
-                <h2 class="text-sm font-medium">{group.title}</h2>
-                <div class="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <Badge variant="outline">{item}</Badge>
-                  ))}
+            {
+              skillGroups.map((group) => (
+                <div class="flex flex-col gap-2">
+                  <h2 class="text-sm font-medium">{group.title}</h2>
+                  <div class="flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <Badge variant="outline">{item}</Badge>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            }
           </CardContent>
         </Card>
 
@@ -87,9 +105,13 @@ import { skillGroups, timelineItems, workingStyleItems } from "@/lib/portfolio"
           </CardHeader>
           <CardContent>
             <ul class="flex flex-col gap-3">
-              {workingStyleItems.map((item) => (
-                <li class="text-sm leading-6 text-muted-foreground">{item}</li>
-              ))}
+              {
+                workingStyleItems.map((item) => (
+                  <li class="text-sm leading-6 text-muted-foreground">
+                    {item}
+                  </li>
+                ))
+              }
             </ul>
           </CardContent>
         </Card>

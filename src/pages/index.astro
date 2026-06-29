@@ -1,10 +1,16 @@
 ---
-import { ArrowRight, Coffee, Smartphone } from "lucide-react"
+import { ArrowRight, Coffee, Smartphone } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Layout from "@/layouts/Layout.astro"
-import { apps, skillGroups } from "@/lib/portfolio"
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Layout from "@/layouts/Layout.astro";
+import { apps, skillGroups } from "@/lib/portfolio";
 ---
 
 <Layout
@@ -12,19 +18,25 @@ import { apps, skillGroups } from "@/lib/portfolio"
   description="Portfolio for a React frontend and Expo React Native developer."
 >
   <section class="px-6 py-16 sm:py-24">
-    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(18rem,0.68fr)] lg:items-center lg:gap-14">
+    <div
+      class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(18rem,0.68fr)] lg:items-center lg:gap-14"
+    >
       <div class="flex flex-col gap-6">
         <Badge className="w-fit" variant="secondary">
           <Coffee aria-hidden="true" />
           Coffee-fueled frontend and mobile work
         </Badge>
         <div class="flex flex-col gap-4">
-          <h1 class="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:max-w-3xl">
+          <h1
+            class="max-w-4xl text-4xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:max-w-3xl"
+          >
             React interfaces and Expo apps that feel shipped.
           </h1>
-          <p class="max-w-xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-            Placeholder Developer builds practical web and mobile experiences across React, Astro,
-            and Expo React Native.
+          <p
+            class="max-w-xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8"
+          >
+            Placeholder Developer builds practical web and mobile experiences
+            across React, Astro, and Expo React Native.
           </p>
         </div>
         <div class="flex gap-3 sm:flex-row">
@@ -33,8 +45,10 @@ import { apps, skillGroups } from "@/lib/portfolio"
             class="relative flex min-h-11 flex-1 items-center justify-center rounded-full border border-border/80 bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/85 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto sm:min-w-40 sm:flex-none sm:justify-between sm:gap-3"
           >
             <span>View apps</span>
-            <span class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-primary-foreground/15 bg-primary-foreground/10 sm:static">
-              <ArrowRight class="size-3.5" aria-hidden="true" />
+            <span
+              class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-primary-foreground/15 bg-primary-foreground/10 sm:static"
+            >
+              <ArrowRight className="size-3.5" aria-hidden="true" />
             </span>
           </a>
           <a
@@ -42,8 +56,10 @@ import { apps, skillGroups } from "@/lib/portfolio"
             class="relative flex min-h-11 flex-1 items-center justify-center rounded-full border border-border/80 bg-muted/30 px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto sm:min-w-40 sm:flex-none sm:justify-between sm:gap-3"
           >
             <span>Contact</span>
-            <span class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-border/80 bg-background/80 sm:static">
-              <ArrowRight class="size-3.5" aria-hidden="true" />
+            <span
+              class="absolute right-4 flex size-7 items-center justify-center rounded-full border border-border/80 bg-background/80 sm:static"
+            >
+              <ArrowRight className="size-3.5" aria-hidden="true" />
             </span>
           </a>
         </div>
@@ -53,20 +69,24 @@ import { apps, skillGroups } from "@/lib/portfolio"
         <CardHeader>
           <CardTitle>Current focus</CardTitle>
           <CardDescription>
-            Mobile ergonomics, responsive systems, and small interactions that make products feel
-            finished.
+            Mobile ergonomics, responsive systems, and small interactions that
+            make products feel finished.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div class="grid gap-3">
-            {["Expo React Native", "Accessible shadcn UI", "Android release workflow"].map(
-              (item) => (
+            {
+              [
+                "Expo React Native",
+                "Accessible shadcn UI",
+                "Android release workflow",
+              ].map((item) => (
                 <div class="flex min-w-0 items-center gap-3 rounded-lg bg-muted/70 px-4 py-3">
                   <Smartphone aria-hidden="true" />
                   <span class="min-w-0 text-sm font-medium">{item}</span>
                 </div>
-              )
-            )}
+              ))
+            }
           </div>
         </CardContent>
       </Card>
@@ -80,47 +100,56 @@ import { apps, skillGroups } from "@/lib/portfolio"
         <h2 class="text-3xl font-semibold">Built app shelf</h2>
       </div>
       <div class="grid gap-4 md:grid-cols-2">
-        {apps.map((app) => (
-          <Card>
-            <CardHeader>
-              <CardDescription>{app.eyebrow}</CardDescription>
-              <CardTitle>{app.name}</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-5">
-              <div class="aspect-[4/3] rounded-xl border border-border bg-muted p-4">
-                <div class="mx-auto h-full max-w-40 rounded-2xl border border-border bg-card p-3 shadow-sm">
-                  <div class="h-full rounded-xl bg-background" aria-label={`${app.name} placeholder screenshot`}></div>
+        {
+          apps.map((app) => (
+            <Card>
+              <CardHeader>
+                <CardDescription>{app.eyebrow}</CardDescription>
+                <CardTitle>{app.name}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-5">
+                <div class="aspect-[4/3] rounded-xl border border-border bg-muted p-4">
+                  <div class="mx-auto h-full max-w-40 rounded-2xl border border-border bg-card p-3 shadow-sm">
+                    <div
+                      class="h-full rounded-xl bg-background"
+                      aria-label={`${app.name} placeholder screenshot`}
+                    />
+                  </div>
                 </div>
-              </div>
-              <p class="text-sm leading-6 text-muted-foreground">{app.summary}</p>
-              <div class="flex flex-wrap gap-2">
-                {app.stack.slice(0, 4).map((item) => (
-                  <Badge variant="secondary">{item}</Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        ))}
+                <p class="text-sm leading-6 text-muted-foreground">
+                  {app.summary}
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {app.stack.slice(0, 4).map((item) => (
+                    <Badge variant="secondary">{item}</Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <section class="px-6 py-16">
     <div class="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
-      {skillGroups.map((group) => (
-        <Card>
-          <CardHeader>
-            <CardTitle>{group.title}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div class="flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <Badge variant="outline">{item}</Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+      {
+        skillGroups.map((group) => (
+          <Card>
+            <CardHeader>
+              <CardTitle>{group.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div class="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <Badge variant="outline">{item}</Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        ))
+      }
     </div>
   </section>
 </Layout>

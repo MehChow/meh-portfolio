@@ -1,46 +1,31 @@
-# Astro Starter Kit: Basics
+# meh-portfolio
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Small Astro portfolio with three static pages:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- `/` landing page
+- `/apps` app showcase
+- `/about` profile and stack details
 
-## 🚀 Project Structure
+## Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+All commands run from the project root:
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+| Command | Action |
+| :--- | :--- |
+| `pnpm install` | Install dependencies |
+| `astro dev --background` | Start the local dev server in background mode |
+| `astro dev status` | Check background dev server status |
+| `astro dev logs` | View background dev server logs |
+| `astro dev stop` | Stop the background dev server |
+| `pnpm build` | Build the production site into `dist/` |
+| `pnpm preview` | Preview the production build locally |
+| `pnpm lint` | Run ESLint across `.astro`, `.ts`, and `.tsx` files |
+| `pnpm lint:fix` | Apply auto-fixable ESLint changes |
+| `pnpm astro -- --help` | Show Astro CLI help |
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Linting
 
-## 🧞 Commands
+This repo uses ESLint flat config for Astro components and TypeScript/TSX files.
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Run `pnpm lint` before shipping changes.
+- Run `pnpm lint:fix` for safe auto-fixes.
