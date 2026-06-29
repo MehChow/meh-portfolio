@@ -1,3 +1,9 @@
+## Website Structure
+
+This repo is a small Astro portfolio with three static pages: `/` for the landing page, `/apps` for the two-app showcase, and `/about` for profile, timeline, and stack details.
+
+Shared content lives in `src/lib/portfolio.ts`, the global shell lives in `src/layouts/Layout.astro`, and the only hydrated React island is `src/components/site-header.tsx` for the mobile shadcn `Sheet` navigation. Reusable UI primitives live in `src/components/ui`, while page-level styling stays mostly in Astro markup with global polish in `src/styles/global.css`.
+
 ## Development
 
 When starting the dev server, use background mode:
